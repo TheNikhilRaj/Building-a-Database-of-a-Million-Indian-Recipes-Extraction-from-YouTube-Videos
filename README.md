@@ -457,7 +457,7 @@ For ingredient list `L` from video description:
 | Name            | Role                                                        | Contact                   |
 | --------------- | ----------------------------------------------------------- | ------------------------- |
 | **Nikhil Raj**  | Pipeline Development, Metadata Extraction, Tool Development | nikhilrjraj7890@gmail.com |
-| **Sai Deepika** | Transcript Processing, Translation, Quality Assurance       | saideepika1326@gmail.com  |
+| **Erla Sai Deepika** | Transcript Processing, Translation, Quality Assurance       | saideepika1326@gmail.com  |
 
 ---
 
