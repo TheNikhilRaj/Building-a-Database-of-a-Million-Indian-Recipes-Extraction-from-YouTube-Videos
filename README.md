@@ -2,17 +2,19 @@
 ## Extraction from YouTube Videos
 
 [![NPTEL Winter Internship](https://img.shields.io/badge/NPTEL-Winter%20Internship%202025-blue)](https://nptel.ac.in/)
-[![Ashoka University](https://img.shields.io/badge/Mentor-Ashoka%20University-green)](https://www.ashoka.edu. in/)
+[![Ashoka University](https://img.shields.io/badge/Mentor-Ashoka%20University-green)](https://www.ashoka.edu.in/)
+[![Python](https://img.shields.io/badge/Python-3.8+-yellow)](https://python.org/)
+[![License](https://img.shields.io/badge/License-Academic-orange)]()
 
 ---
 
 ## 📋 Project Overview
 
-A scalable pipeline for extracting, translating, and structuring cooking recipes from YouTube videos featuring Indian regional cuisines.  This project converts unstructured multilingual video content into machine-readable structured data (JSON format) suitable for database construction.
+A scalable pipeline for extracting, translating, and structuring cooking recipes from YouTube videos featuring Indian regional cuisines. This project converts unstructured multilingual video content into machine-readable structured data (JSON format) suitable for database construction.
 
 **Project Duration:** October 2025 - January 2026  
 **Team:** Nikhil Raj & Sai Deepika  
-**Mentors:** Prof.  Lipika Dey & Prof. Partha Pratim Das, Ashoka University  
+**Mentors:** Prof. Lipika Dey & Prof. Partha Pratim Das, Ashoka University  
 **Program:** NPTEL Winter Internship 2025
 
 ---
@@ -22,21 +24,24 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 ```
 ├── Indian Rajasthani Village Food Cooking Recipe/
 │   └── [Recipe JSON files]
-│
+│   
 ├── Rural Recipes/
 │   └── [Recipe JSON files]
-│
+│   
 ├── Thasneen (South Indian) Recipes/
 │   └── [Recipe JSON files]
-│
+│   
 ├── Vismai Food (SIMPLY SOUTH) Recipes/
 │   └── [Recipe JSON files]
-│
+│   
+├── tools/
+│   └── recipe_visualizer.html          # Custom visualization tool
+│   
 ├── Indian Rajasthani Village Food Cooking Recipe-Metadata-Excel-File.xlsx
 ├── Rural Recipes-Metadata-Excel-File.xlsx
 ├── Thasneen (South Indian) Recipes-Metadata-Excel-File.xlsx
 ├── Vismai Food (SIMPLY SOUTH) Recipes-Metadata-Excel-File.xlsx
-│
+│   
 └── README.md
 ```
 
@@ -51,7 +56,7 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 | Thasneen (South Indian) | Malayalam/Tamil | 42 | 42 | ✅ Completed |
 | Vismai Food (SIMPLY SOUTH) | Telugu | 270 | 270 | ✅ Completed |
 
-> **Note:** Update the actual counts from your data. 
+**Total Recipes Extracted: 403**
 
 ---
 
@@ -61,8 +66,41 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 |------|---------|------|
 | **TurboScribe** | YouTube transcript extraction (Speech-to-Text) | [turboscribe.ai](https://turboscribe.ai/) |
 | **Google Gemini AI** | Translation & metadata extraction | [gemini.google.com](https://gemini.google.com/) |
-| **MW Metadata Tool** | Video metadata extraction | [Browser-based](https://mattw.io/youtube-metadata/) |
-| **Custom HTML/JS Visualizer** | Quality inspection & JSON formatting | Included in project |
+| **MW Metadata Tool** | Video metadata extraction | [mattw.io/youtube-metadata](https://mattw.io/youtube-metadata/) |
+| **Recipe Visualizer** | Quality inspection & JSON formatting | [Included in repo](tools/recipe_visualizer.html) |
+
+---
+
+## 🛠️ Custom Tools
+
+### Recipe Metadata Visualizer
+
+A web-based tool for creating, viewing, and editing recipe JSON files.
+
+**Location:** [`tools/recipe_visualizer.html`](tools/recipe_visualizer.html)
+
+**Features:**
+- 📥 **Input Tab** - Enter video metadata, ingredients, and transcripts
+- 👁️ **Preview Tab** - See formatted preview of your data
+- 📄 **JSON Tab** - View syntax-highlighted JSON output with copy/download
+- 📂 **Load Tab** - Load existing JSON files via drag & drop
+- 📊 **Stats Bar** - Real-time word counts, ingredient count, completion percentage
+- 💾 **Download** - Export JSON files with proper naming
+- 📋 **Copy** - One-click copy to clipboard
+- 🔄 **Offline** - Works without internet connection
+
+**How to Use:**
+1. Download `tools/recipe_visualizer.html` from this repository
+2. Open the file in any web browser (Chrome, Firefox, Edge)
+3. Fill in the metadata fields (Video ID, Title, Channel, Language, etc.)
+4. Add ingredients one by one or paste in bulk
+5. Paste original transcript and English translation
+6. Click "Generate JSON" to create structured output
+7. Download or copy the JSON file
+
+**Screenshot:**
+
+![Visualizer Tool](https://via.placeholder.com/800x400?text=Recipe+Visualizer+Tool+Screenshot)
 
 ---
 
@@ -73,12 +111,12 @@ Each recipe is stored as a structured JSON file with the following schema:
 ```json
 {
   "video_id": "lbhoAJVkWQk",
-  "title":  "Traditional Bengali Fish Curry",
+  "title": "Traditional Bengali Fish Curry",
   "channel": "Rural Recipes BNC",
-  "url":  "https://www.youtube.com/watch?v=lbhoAJVkWQk",
+  "url": "https://www.youtube.com/watch?v=lbhoAJVkWQk",
   "language": "Bengali",
   "duration": "12:45",
-  "publish_date":  "2024-03-15",
+  "publish_date": "2024-03-15",
   "view_count": 125000,
   "like_count": 5200,
   "ingredients": [
@@ -88,11 +126,12 @@ Each recipe is stored as a structured JSON file with the following schema:
     "Green chilies - 4",
     "Mustard paste - 2 tbsp"
   ],
-  "transcript_original": "আজ আমরা রান্না করব একটা traditional মাছের ঝোল.. .",
-  "transcript_english":  "Today we will cook a traditional fish curry...",
-  "metadata":  {
-    "extraction_date":  "2026-01-15",
-    "pipeline_version": "1.0"
+  "transcript_original": "আজ আমরা রান্না করব একটা traditional মাছের ঝোল...",
+  "transcript_english": "Today we will cook a traditional fish curry...",
+  "metadata": {
+    "extraction_date": "2026-01-15",
+    "pipeline_version": "1.0",
+    "extracted_by": "NPTEL Internship Team"
   }
 }
 ```
@@ -125,16 +164,30 @@ recipes = []
 
 for filename in os.listdir(channel_folder):
     if filename.endswith('.json'):
-        with open(os.path. join(channel_folder, filename), 'r', encoding='utf-8') as f:
+        with open(os.path.join(channel_folder, filename), 'r', encoding='utf-8') as f:
             recipe = json.load(f)
             recipes.append(recipe)
 
 print(f"Loaded {len(recipes)} recipes")
 
 # Example: Print all recipe titles
-for recipe in recipes: 
-    print(recipe. get('title', 'No title'))
+for recipe in recipes:
+    print(recipe.get('title', 'No title'))
+
+# Example: Find all recipes with a specific ingredient
+def find_recipes_with_ingredient(recipes, ingredient):
+    return [r for r in recipes if any(ingredient.lower() in ing.lower() for ing in r.get('ingredients', []))]
+
+fish_recipes = find_recipes_with_ingredient(recipes, 'fish')
+print(f"Found {len(fish_recipes)} fish recipes")
 ```
+
+### Option 4: Use the Visualizer Tool
+
+1. Open `tools/recipe_visualizer.html` in your browser
+2. Go to "Load JSON" tab
+3. Drag and drop any JSON file from the dataset
+4. View formatted data with syntax highlighting
 
 ---
 
@@ -173,12 +226,12 @@ The extraction pipeline follows these steps:
          ▼
 ┌─────────────────┐
 │      JSON       │  ← Combine all data into
-│   Structuring   │     standardized format
+│   Structuring   │     standardized format using Visualizer
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
-│  Quality Check  │  ← Manual verification
+│  Quality Check  │  ← Manual verification using Visualizer
 └────────┬────────┘
          │
          ▼
@@ -202,14 +255,11 @@ The extraction pipeline follows these steps:
 7. Wait for processing (usually 1-5 minutes)
 8. Download transcript in TXT or JSON format
 
-**TurboScribe Features Used:**
+**TurboScribe Features:**
 - Supports 98+ languages including Indian regional languages
 - High accuracy for Hindi, Bengali, Telugu, Tamil, Malayalam
 - Handles background noise and multiple speakers
-- Free tier:  3 free transcriptions
-
-**Screenshot:**
-![TurboScribe Interface](docs/screenshots/turboscribe. png)
+- Free tier: 3 free transcriptions
 
 ---
 
@@ -218,11 +268,11 @@ The extraction pipeline follows these steps:
 Go to [Gemini AI](https://gemini.google.com/) and use this prompt:
 
 ```
-Extract metadata from this YouTube cooking video in JSON format: 
+Extract metadata from this YouTube cooking video in JSON format:
 
 Video URL: [PASTE_VIDEO_URL]
 
-Please extract: 
+Please extract:
 - video_id
 - title
 - channel_name
@@ -231,7 +281,7 @@ Please extract:
 - ingredients (if mentioned in description)
 - brief description
 
-Output as valid JSON. 
+Output as valid JSON.
 ```
 
 ---
@@ -245,7 +295,7 @@ Translate the following cooking recipe transcript from [LANGUAGE] to English.
 
 Guidelines:
 1. Preserve ingredient names that don't have English equivalents - transliterate them
-2. Keep traditional measurements as-is (e. g., "one fistful", "andaaz se")
+2. Keep traditional measurements as-is (e.g., "one fistful", "andaaz se")
 3. Maintain the conversational tone
 4. Add [transliteration] for cultural/regional terms
 
@@ -255,15 +305,18 @@ Transcript:
 
 ---
 
-### Step 4: Create Structured JSON
+### Step 4: Create Structured JSON using Visualizer
 
-Combine metadata, original transcript, and English translation into the JSON schema shown above. 
-
-**You can use our Custom Visualizer Tool:**
-1. Open the HTML tool in browser
-2. Paste metadata, transcript, and translation
-3. Click "Generate JSON"
-4. Download structured output
+1. Open `tools/recipe_visualizer.html` in your browser
+2. Fill in the **Input Data** tab:
+   - Video ID, Title, Channel Name, Language
+   - Duration, Publish Date, View/Like counts
+   - Add ingredients (one by one or bulk paste)
+   - Paste original transcript
+   - Paste English translation
+3. Click **"Generate JSON"**
+4. Review in the **JSON Output** tab
+5. Click **"Download"** to save the file
 
 ---
 
@@ -273,13 +326,14 @@ Combine metadata, original transcript, and English translation into the JSON sch
 
 **Website:** https://turboscribe.ai/
 
-**Why TurboScribe? **
+**Why TurboScribe?**
 - Better accuracy for Indian regional languages compared to YouTube auto-captions
 - Supports direct YouTube URL input
 - Clean transcript output without timestamps clutter
 - Handles poor audio quality better
 
 **Supported Languages (Used in Project):**
+
 | Language | Accuracy | Notes |
 |----------|----------|-------|
 | Hindi | High | Handles code-mixing well |
@@ -301,7 +355,7 @@ Combine metadata, original transcript, and English translation into the JSON sch
 **Website:** https://gemini.google.com/
 
 **Used For:**
-1.  Translating regional language transcripts to English
+1. Translating regional language transcripts to English
 2. Extracting structured metadata from video descriptions
 3. Identifying ingredients from transcripts
 4. Quality checking translations
@@ -314,15 +368,23 @@ Combine metadata, original transcript, and English translation into the JSON sch
 
 ---
 
-### Tool 3: Custom Metadata Visualizer
+### Tool 3: Recipe Metadata Visualizer (Custom Built)
 
-**Purpose:** Quality inspection and JSON formatting
+**Location:** `tools/recipe_visualizer.html`
 
-**Features:**
-- Dual-panel view (Original | Translated)
-- JSON syntax highlighting
-- Edit and export functionality
-- Offline capability
+**Purpose:** Quality inspection, JSON creation, and data formatting
+
+**Key Features:**
+
+| Feature | Description |
+|---------|-------------|
+| 📥 Input Data | Enter all metadata, ingredients, transcripts |
+| 👁️ Preview | Formatted view of recipe data |
+| 📄 JSON Output | Syntax-highlighted JSON with copy/download |
+| 📂 Load JSON | Import existing files via drag & drop |
+| 📊 Stats | Real-time word count and completion tracking |
+| 🎨 Modern UI | Beautiful gradient design, fully responsive |
+| 🔄 Offline | Works without internet after loading |
 
 ---
 
@@ -333,13 +395,13 @@ Combine metadata, original transcript, and English translation into the JSON sch
 As suggested by Prof. Lipika Dey:
 
 ```
-Original Text (A) 
+Original Text (A)
       ↓ [Translate]
 English Text (B)
       ↓ [Back-Translate]
 Back-Translated Text (A')
       ↓
-Compare A and A' using: 
+Compare A and A' using:
 - BLEU Score
 - ROUGE Score
 - BERTScore
@@ -347,7 +409,7 @@ Compare A and A' using:
 
 ### Hallucination Detection
 
-For ingredient list `L` from video description: 
+For ingredient list `L` from video description:
 
 | Metric | Formula | Meaning |
 |--------|---------|---------|
@@ -362,8 +424,10 @@ For ingredient list `L` from video description:
 | Resource | Link |
 |----------|------|
 | Full Dataset (Google Drive) | [Click Here](https://drive.google.com/drive/folders/1kyAQaV5eYWCy8YCyMgc9ebVtzTRi_ifo) |
+| Recipe Visualizer Tool | [tools/recipe_visualizer.html](tools/recipe_visualizer.html) |
 | TurboScribe | [turboscribe.ai](https://turboscribe.ai/) |
 | Google Gemini AI | [gemini.google.com](https://gemini.google.com/) |
+| MW Metadata Tool | [mattw.io/youtube-metadata](https://mattw.io/youtube-metadata/) |
 | Project Report | Attached in submission email |
 
 ---
@@ -376,6 +440,7 @@ For ingredient list `L` from video description:
 - [ ] Recipe Knowledge Graph construction using Neo4j
 - [ ] Mobile application for browsing recipes
 - [ ] Integration with nutrition databases
+- [ ] Web-based dashboard for dataset exploration
 
 ---
 
@@ -383,8 +448,8 @@ For ingredient list `L` from video description:
 
 | Name | Role | Contact |
 |------|------|---------|
-| **Nikhil Raj** | Pipeline Development, Metadata Extraction | nikhilrjraj7890@gmail.com |
-| **Sai Deepika** | Transcript Processing, Translation | saideepika1326@gmail.com |
+| **Nikhil Raj** | Pipeline Development, Metadata Extraction, Tool Development | nikhilrjraj7890@gmail.com |
+| **Sai Deepika** | Transcript Processing, Translation, Quality Assurance | saideepika1326@gmail.com |
 
 ---
 
@@ -398,15 +463,22 @@ For ingredient list `L` from video description:
 
 ## 📄 License
 
-This project was developed as part of **NPTEL Winter Internship 2025** under the guidance of Ashoka University. 
+This project was developed as part of **NPTEL Winter Internship 2025** under the guidance of Ashoka University.
 
 ---
 
 ## 📚 References
 
 1. Vaswani, A., et al. (2017). "Attention is All You Need." *NeurIPS*
-2. Radford, A., et al. (2022). "Whisper:  Robust Speech Recognition." *OpenAI*
+2. Radford, A., et al. (2022). "Whisper: Robust Speech Recognition." *OpenAI*
 3. TurboScribe - AI Transcription Tool - https://turboscribe.ai/
 4. Google Gemini AI - https://gemini.google.com/
-5. Machine Translation Evaluation Guide - https://www.machinetranslation.com/
-6. Rural Recipes by Banglanatak - https://www.youtube.com/@RuralRecipes_BNC
+5. YouTube Metadata Tool - https://mattw.io/youtube-metadata/
+6. Machine Translation Evaluation Guide - https://www.machinetranslation.com/
+7. Rural Recipes by Banglanatak - https://www.youtube.com/@RuralRecipes_BNC
+
+---
+
+<p align="center">
+  <b>⭐ If you find this dataset useful, please consider starring this repository! ⭐</b>
+</p>
