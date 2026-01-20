@@ -14,7 +14,7 @@
 A scalable pipeline for extracting, translating, and structuring cooking recipes from YouTube videos featuring Indian regional cuisines. This project converts unstructured multilingual video content into machine-readable structured data (JSON format) suitable for database construction.
 
 **Project Duration:** October 2025 - January 2026  
-**Team:** Nikhil Raj & Sai Deepika  
+**Team:** Nikhil Raj & Erla Sai Deepika  
 **Mentors:** Prof. Lipika Dey & Prof. Partha Pratim Das, Ashoka University  
 **Program:** NPTEL Winter Internship 2025
 
