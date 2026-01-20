@@ -46,10 +46,10 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 
 | Channel Name | Language | Total Videos | JSON Files | Status |
 |--------------|----------|--------------|------------|--------|
-| Rural Recipes (Banglanatak) | Bengali/Hindi | -- | -- | ✅ Completed |
-| Indian Rajasthani Village Food | Rajasthani/Hindi | -- | -- | ✅ Completed |
-| Thasneen (South Indian) | Malayalam/Tamil | -- | -- | ✅ Completed |
-| Vismai Food (SIMPLY SOUTH) | Telugu | -- | -- | ✅ Completed |
+| Rural Recipes (Banglanatak) | Bengali/Hindi | 75 | 75 | ✅ Completed |
+| Indian Rajasthani Village Food | Rajasthani/Hindi | 16 | 16 | ✅ Completed |
+| Thasneen (South Indian) | Malayalam/Tamil | 42 | 42 | ✅ Completed |
+| Vismai Food (SIMPLY SOUTH) | Telugu | 270 | 270 | ✅ Completed |
 
 > **Note:** Please update the actual counts from your data. 
 
@@ -61,7 +61,7 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 |------|---------|------|
 | **Tactiq** | YouTube transcript extraction | [tactiq.io](https://tactiq.io/) |
 | **Google Gemini AI** | Translation & metadata extraction | [gemini.google.com](https://gemini.google.com/) |
-| **MW Metadata Tool** | Video metadata extraction | Browser-based |
+| **MW Metadata Tool** | Video metadata extraction | [Browser-based](https://mattw.io/youtube-metadata/) |
 
 ---
 
