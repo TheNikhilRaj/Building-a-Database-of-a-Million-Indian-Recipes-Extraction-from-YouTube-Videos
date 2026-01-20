@@ -1,4 +1,5 @@
 # Building a Database of a Million Indian Recipes
+
 ## Extraction from YouTube Videos
 
 [![NPTEL Winter Internship](https://img.shields.io/badge/NPTEL-Winter%20Internship%202025-blue)](https://nptel.ac.in/)
@@ -24,24 +25,24 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 ```
 ├── Indian Rajasthani Village Food Cooking Recipe/
 │   └── [Recipe JSON files]
-│   
+│
 ├── Rural Recipes/
 │   └── [Recipe JSON files]
-│   
+│
 ├── Thasneen (South Indian) Recipes/
 │   └── [Recipe JSON files]
-│   
+│
 ├── Vismai Food (SIMPLY SOUTH) Recipes/
 │   └── [Recipe JSON files]
-│   
+│
 ├── tools/
 │   └── recipe_visualizer.html          # Custom visualization tool
-│   
+│
 ├── Indian Rajasthani Village Food Cooking Recipe-Metadata-Excel-File.xlsx
 ├── Rural Recipes-Metadata-Excel-File.xlsx
 ├── Thasneen (South Indian) Recipes-Metadata-Excel-File.xlsx
 ├── Vismai Food (SIMPLY SOUTH) Recipes-Metadata-Excel-File.xlsx
-│   
+│
 └── README.md
 ```
 
@@ -49,12 +50,12 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 
 ## 📊 Dataset Summary
 
-| Channel Name | Language | Total Videos | JSON Files | Status |
-|--------------|----------|--------------|------------|--------|
-| Rural Recipes (Banglanatak) | Bengali/Hindi | 75 | 75 | ✅ Completed |
-| Indian Rajasthani Village Food | Rajasthani/Hindi | 16 | 16 | ✅ Completed |
-| Thasneen (South Indian) | Malayalam/Tamil | 42 | 42 | ✅ Completed |
-| Vismai Food (SIMPLY SOUTH) | Telugu | 270 | 270 | ✅ Completed |
+| Channel Name                   | Language         | Total Videos | JSON Files | Status       |
+| ------------------------------ | ---------------- | ------------ | ---------- | ------------ |
+| Rural Recipes (Banglanatak)    | Bengali/Hindi    | 75           | 75         | ✅ Completed |
+| Indian Rajasthani Village Food | Rajasthani/Hindi | 16           | 16         | ✅ Completed |
+| Thasneen (South Indian)        | Malayalam/Tamil  | 42           | 42         | ✅ Completed |
+| Vismai Food (SIMPLY SOUTH)     | Telugu           | 270          | 270        | ✅ Completed |
 
 **Total Recipes Extracted: 403**
 
@@ -62,12 +63,12 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 
 ## 🔧 Tools & Technologies Used
 
-| Tool | Purpose | Link |
-|------|---------|------|
-| **TurboScribe** | YouTube transcript extraction (Speech-to-Text) | [turboscribe.ai](https://turboscribe.ai/) |
-| **Google Gemini AI** | Translation & metadata extraction | [gemini.google.com](https://gemini.google.com/) |
-| **MW Metadata Tool** | Video metadata extraction | [mattw.io/youtube-metadata](https://mattw.io/youtube-metadata/) |
-| **Recipe Visualizer** | Quality inspection & JSON formatting | [Included in repo](tools/recipe_visualizer.html) |
+| Tool                  | Purpose                                        | Link                                                            |
+| --------------------- | ---------------------------------------------- | --------------------------------------------------------------- |
+| **TurboScribe**       | YouTube transcript extraction (Speech-to-Text) | [turboscribe.ai](https://turboscribe.ai/)                       |
+| **Google Gemini AI**  | Translation & metadata extraction              | [gemini.google.com](https://gemini.google.com/)                 |
+| **MW Metadata Tool**  | Video metadata extraction                      | [mattw.io/youtube-metadata](https://mattw.io/youtube-metadata/) |
+| **Recipe Visualizer** | Quality inspection & JSON formatting           | [Included in repo](tools/recipe_visualizer.html)                |
 
 ---
 
@@ -80,6 +81,7 @@ A web-based tool for creating, viewing, and editing recipe JSON files.
 **Location:** [`tools/recipe_visualizer.html`](tools/recipe_visualizer.html)
 
 **Features:**
+
 - 📥 **Input Tab** - Enter video metadata, ingredients, and transcripts
 - 👁️ **Preview Tab** - See formatted preview of your data
 - 📄 **JSON Tab** - View syntax-highlighted JSON output with copy/download
@@ -90,6 +92,7 @@ A web-based tool for creating, viewing, and editing recipe JSON files.
 - 🔄 **Offline** - Works without internet connection
 
 **How to Use:**
+
 1. Download `tools/recipe_visualizer.html` from this repository
 2. Open the file in any web browser (Chrome, Firefox, Edge)
 3. Fill in the metadata fields (Video ID, Title, Channel, Language, etc.)
@@ -100,7 +103,7 @@ A web-based tool for creating, viewing, and editing recipe JSON files.
 
 **Screenshot:**
 
-![Visualizer Tool](https://via.placeholder.com/800x400?text=Recipe+Visualizer+Tool+Screenshot)
+![Recipe Visualizer Tool](/docs/screenshots/visualizer_screenshot.png)
 
 ---
 
@@ -256,6 +259,7 @@ The extraction pipeline follows these steps:
 8. Download transcript in TXT or JSON format
 
 **TurboScribe Features:**
+
 - Supports 98+ languages including Indian regional languages
 - High accuracy for Hindi, Bengali, Telugu, Tamil, Malayalam
 - Handles background noise and multiple speakers
@@ -327,6 +331,7 @@ Transcript:
 **Website:** https://turboscribe.ai/
 
 **Why TurboScribe?**
+
 - Better accuracy for Indian regional languages compared to YouTube auto-captions
 - Supports direct YouTube URL input
 - Clean transcript output without timestamps clutter
@@ -334,16 +339,17 @@ Transcript:
 
 **Supported Languages (Used in Project):**
 
-| Language | Accuracy | Notes |
-|----------|----------|-------|
-| Hindi | High | Handles code-mixing well |
-| Bengali | High | Good for rural accents |
-| Telugu | High | Clear transcription |
-| Tamil | High | Accurate |
-| Malayalam | Medium-High | Some dialect variations |
-| Rajasthani | Medium | Treats as Hindi dialect |
+| Language   | Accuracy    | Notes                    |
+| ---------- | ----------- | ------------------------ |
+| Hindi      | High        | Handles code-mixing well |
+| Bengali    | High        | Good for rural accents   |
+| Telugu     | High        | Clear transcription      |
+| Tamil      | High        | Accurate                 |
+| Malayalam  | Medium-High | Some dialect variations  |
+| Rajasthani | Medium      | Treats as Hindi dialect  |
 
 **Usage Limits (Free Tier):**
+
 - 3 free transcriptions
 - Up to 30 minutes per file
 - Standard processing speed
@@ -355,12 +361,14 @@ Transcript:
 **Website:** https://gemini.google.com/
 
 **Used For:**
+
 1. Translating regional language transcripts to English
 2. Extracting structured metadata from video descriptions
 3. Identifying ingredients from transcripts
 4. Quality checking translations
 
 **Best Practices:**
+
 - Use detailed prompts with guidelines
 - Specify source language explicitly
 - Ask to preserve transliterated terms
@@ -376,15 +384,15 @@ Transcript:
 
 **Key Features:**
 
-| Feature | Description |
-|---------|-------------|
-| 📥 Input Data | Enter all metadata, ingredients, transcripts |
-| 👁️ Preview | Formatted view of recipe data |
-| 📄 JSON Output | Syntax-highlighted JSON with copy/download |
-| 📂 Load JSON | Import existing files via drag & drop |
-| 📊 Stats | Real-time word count and completion tracking |
-| 🎨 Modern UI | Beautiful gradient design, fully responsive |
-| 🔄 Offline | Works without internet after loading |
+| Feature        | Description                                  |
+| -------------- | -------------------------------------------- |
+| 📥 Input Data  | Enter all metadata, ingredients, transcripts |
+| 👁️ Preview     | Formatted view of recipe data                |
+| 📄 JSON Output | Syntax-highlighted JSON with copy/download   |
+| 📂 Load JSON   | Import existing files via drag & drop        |
+| 📊 Stats       | Real-time word count and completion tracking |
+| 🎨 Modern UI   | Beautiful gradient design, fully responsive  |
+| 🔄 Offline     | Works without internet after loading         |
 
 ---
 
@@ -411,24 +419,24 @@ Compare A and A' using:
 
 For ingredient list `L` from video description:
 
-| Metric | Formula | Meaning |
-|--------|---------|---------|
-| **Hit** | Items in L ∩ Transcript | Correctly extracted |
-| **Miss** | Items in L but not in Transcript | Missed ingredients |
-| **Hallucination** | Items in Transcript but not in L | False additions |
+| Metric            | Formula                          | Meaning             |
+| ----------------- | -------------------------------- | ------------------- |
+| **Hit**           | Items in L ∩ Transcript          | Correctly extracted |
+| **Miss**          | Items in L but not in Transcript | Missed ingredients  |
+| **Hallucination** | Items in Transcript but not in L | False additions     |
 
 ---
 
 ## 📂 Additional Resources
 
-| Resource | Link |
-|----------|------|
+| Resource                    | Link                                                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------- |
 | Full Dataset (Google Drive) | [Click Here](https://drive.google.com/drive/folders/1kyAQaV5eYWCy8YCyMgc9ebVtzTRi_ifo) |
-| Recipe Visualizer Tool | [tools/recipe_visualizer.html](tools/recipe_visualizer.html) |
-| TurboScribe | [turboscribe.ai](https://turboscribe.ai/) |
-| Google Gemini AI | [gemini.google.com](https://gemini.google.com/) |
-| MW Metadata Tool | [mattw.io/youtube-metadata](https://mattw.io/youtube-metadata/) |
-| Project Report | Attached in submission email |
+| Recipe Visualizer Tool      | [tools/recipe_visualizer.html](tools/recipe_visualizer.html)                           |
+| TurboScribe                 | [turboscribe.ai](https://turboscribe.ai/)                                              |
+| Google Gemini AI            | [gemini.google.com](https://gemini.google.com/)                                        |
+| MW Metadata Tool            | [mattw.io/youtube-metadata](https://mattw.io/youtube-metadata/)                        |
+| Project Report              | Attached in submission email                                                           |
 
 ---
 
@@ -446,10 +454,10 @@ For ingredient list `L` from video description:
 
 ## 👥 Team
 
-| Name | Role | Contact |
-|------|------|---------|
-| **Nikhil Raj** | Pipeline Development, Metadata Extraction, Tool Development | nikhilrjraj7890@gmail.com |
-| **Sai Deepika** | Transcript Processing, Translation, Quality Assurance | saideepika1326@gmail.com |
+| Name            | Role                                                        | Contact                   |
+| --------------- | ----------------------------------------------------------- | ------------------------- |
+| **Nikhil Raj**  | Pipeline Development, Metadata Extraction, Tool Development | nikhilrjraj7890@gmail.com |
+| **Sai Deepika** | Transcript Processing, Translation, Quality Assurance       | saideepika1326@gmail.com  |
 
 ---
 
@@ -469,8 +477,8 @@ This project was developed as part of **NPTEL Winter Internship 2025** under the
 
 ## 📚 References
 
-1. Vaswani, A., et al. (2017). "Attention is All You Need." *NeurIPS*
-2. Radford, A., et al. (2022). "Whisper: Robust Speech Recognition." *OpenAI*
+1. Vaswani, A., et al. (2017). "Attention is All You Need." _NeurIPS_
+2. Radford, A., et al. (2022). "Whisper: Robust Speech Recognition." _OpenAI_
 3. TurboScribe - AI Transcription Tool - https://turboscribe.ai/
 4. Google Gemini AI - https://gemini.google.com/
 5. YouTube Metadata Tool - https://mattw.io/youtube-metadata/
