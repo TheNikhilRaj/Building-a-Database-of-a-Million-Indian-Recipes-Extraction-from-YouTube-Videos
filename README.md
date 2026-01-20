@@ -12,7 +12,7 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 
 **Project Duration:** October 2025 - January 2026  
 **Team:** Nikhil Raj & Sai Deepika  
-**Mentors:** Prof.  Lipika Dey & Prof.  Partha Pratim Das, Ashoka University  
+**Mentors:** Prof.  Lipika Dey & Prof. Partha Pratim Das, Ashoka University  
 **Program:** NPTEL Winter Internship 2025
 
 ---
@@ -51,7 +51,7 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 | Thasneen (South Indian) | Malayalam/Tamil | 42 | 42 | ✅ Completed |
 | Vismai Food (SIMPLY SOUTH) | Telugu | 270 | 270 | ✅ Completed |
 
-> **Note:** Please update the actual counts from your data. 
+> **Note:** Update the actual counts from your data. 
 
 ---
 
@@ -59,9 +59,10 @@ A scalable pipeline for extracting, translating, and structuring cooking recipes
 
 | Tool | Purpose | Link |
 |------|---------|------|
-| **Tactiq** | YouTube transcript extraction | [tactiq.io](https://tactiq.io/) |
+| **TurboScribe** | YouTube transcript extraction (Speech-to-Text) | [turboscribe.ai](https://turboscribe.ai/) |
 | **Google Gemini AI** | Translation & metadata extraction | [gemini.google.com](https://gemini.google.com/) |
 | **MW Metadata Tool** | Video metadata extraction | [Browser-based](https://mattw.io/youtube-metadata/) |
+| **Custom HTML/JS Visualizer** | Quality inspection & JSON formatting | Included in project |
 
 ---
 
@@ -72,9 +73,9 @@ Each recipe is stored as a structured JSON file with the following schema:
 ```json
 {
   "video_id": "lbhoAJVkWQk",
-  "title": "Traditional Bengali Fish Curry",
+  "title":  "Traditional Bengali Fish Curry",
   "channel": "Rural Recipes BNC",
-  "url": "https://www.youtube.com/watch?v=lbhoAJVkWQk",
+  "url":  "https://www.youtube.com/watch?v=lbhoAJVkWQk",
   "language": "Bengali",
   "duration": "12:45",
   "publish_date":  "2024-03-15",
@@ -112,7 +113,7 @@ Each recipe is stored as a structured JSON file with the following schema:
 2. View consolidated metadata for all videos in that channel
 3. Contains: Video ID, Title, Duration, Language, Status
 
-### Option 3: Programmatic Access
+### Option 3: Programmatic Access (Python)
 
 ```python
 import json
@@ -148,7 +149,7 @@ The extraction pipeline follows these steps:
          │
          ▼
 ┌─────────────────┐
-│ Video Discovery │  ← List all videos in channel
+│ Video Discovery │  ← List all videos in channel/playlist
 └────────┬────────┘
          │
          ▼
@@ -159,8 +160,8 @@ The extraction pipeline follows these steps:
          │
          ▼
 ┌─────────────────┐
-│   Transcript    │  ← Speech-to-text using Tactiq
-│   Extraction    │     (leverages YouTube auto-captions)
+│   Transcript    │  ← Speech-to-text using TurboScribe
+│   Extraction    │     (AI-powered transcription)
 └────────┬────────┘
          │
          ▼
@@ -190,22 +191,31 @@ The extraction pipeline follows these steps:
 
 ## 🔄 Reproducing the Pipeline
 
-### Step 1: Install Tactiq Extension
+### Step 1: Extract Transcript using TurboScribe
 
-1. Go to [Chrome Web Store](https://chrome.google.com/webstore)
-2. Search for "Tactiq"
-3. Click "Add to Chrome"
+1. Go to [TurboScribe](https://turboscribe.ai/)
+2. Sign in / Create account (free tier available)
+3. Click "New Transcription"
+4. Paste YouTube video URL or upload audio/video file
+5. Select source language (Hindi, Bengali, Telugu, etc.)
+6. Click "Transcribe"
+7. Wait for processing (usually 1-5 minutes)
+8. Download transcript in TXT or JSON format
 
-### Step 2: Extract Transcript
+**TurboScribe Features Used:**
+- Supports 98+ languages including Indian regional languages
+- High accuracy for Hindi, Bengali, Telugu, Tamil, Malayalam
+- Handles background noise and multiple speakers
+- Free tier:  3 free transcriptions
 
-1. Open a YouTube recipe video
-2. Click Tactiq icon in browser toolbar
-3. Wait for transcript to load
-4. Click "Export" → Select TXT or JSON format
+**Screenshot:**
+![TurboScribe Interface](docs/screenshots/turboscribe. png)
 
-### Step 3: Extract Metadata (Using Gemini AI)
+---
 
-Use this prompt in [Gemini AI](https://gemini.google.com/):
+### Step 2: Extract Metadata (Using Gemini AI)
+
+Go to [Gemini AI](https://gemini.google.com/) and use this prompt:
 
 ```
 Extract metadata from this YouTube cooking video in JSON format: 
@@ -221,29 +231,98 @@ Please extract:
 - ingredients (if mentioned in description)
 - brief description
 
-Output as valid JSON.
+Output as valid JSON. 
 ```
 
-### Step 4: Translate Transcript (Using Gemini AI)
+---
 
-Use this prompt:
+### Step 3: Translate Transcript (Using Gemini AI)
+
+Use this prompt in Gemini AI:
 
 ```
-Translate the following cooking recipe transcript from [LANGUAGE] to English. 
+Translate the following cooking recipe transcript from [LANGUAGE] to English.
 
 Guidelines:
 1. Preserve ingredient names that don't have English equivalents - transliterate them
-2. Keep traditional measurements as-is (e.g., "one fistful")
+2. Keep traditional measurements as-is (e. g., "one fistful", "andaaz se")
 3. Maintain the conversational tone
-4. Add [transliteration] for cultural terms
+4. Add [transliteration] for cultural/regional terms
 
-Transcript: 
-[PASTE_TRANSCRIPT]
+Transcript:
+[PASTE_TRANSCRIPT_FROM_TURBOSCRIBE]
 ```
 
-### Step 5: Create Structured JSON
+---
 
-Combine metadata, original transcript, and translation into the JSON schema shown above.
+### Step 4: Create Structured JSON
+
+Combine metadata, original transcript, and English translation into the JSON schema shown above. 
+
+**You can use our Custom Visualizer Tool:**
+1. Open the HTML tool in browser
+2. Paste metadata, transcript, and translation
+3. Click "Generate JSON"
+4. Download structured output
+
+---
+
+## 🛠️ Tools Documentation
+
+### Tool 1: TurboScribe (Primary Transcription Tool)
+
+**Website:** https://turboscribe.ai/
+
+**Why TurboScribe? **
+- Better accuracy for Indian regional languages compared to YouTube auto-captions
+- Supports direct YouTube URL input
+- Clean transcript output without timestamps clutter
+- Handles poor audio quality better
+
+**Supported Languages (Used in Project):**
+| Language | Accuracy | Notes |
+|----------|----------|-------|
+| Hindi | High | Handles code-mixing well |
+| Bengali | High | Good for rural accents |
+| Telugu | High | Clear transcription |
+| Tamil | High | Accurate |
+| Malayalam | Medium-High | Some dialect variations |
+| Rajasthani | Medium | Treats as Hindi dialect |
+
+**Usage Limits (Free Tier):**
+- 3 free transcriptions
+- Up to 30 minutes per file
+- Standard processing speed
+
+---
+
+### Tool 2: Google Gemini AI (Translation & Metadata)
+
+**Website:** https://gemini.google.com/
+
+**Used For:**
+1.  Translating regional language transcripts to English
+2. Extracting structured metadata from video descriptions
+3. Identifying ingredients from transcripts
+4. Quality checking translations
+
+**Best Practices:**
+- Use detailed prompts with guidelines
+- Specify source language explicitly
+- Ask to preserve transliterated terms
+- Request JSON output format for metadata
+
+---
+
+### Tool 3: Custom Metadata Visualizer
+
+**Purpose:** Quality inspection and JSON formatting
+
+**Features:**
+- Dual-panel view (Original | Translated)
+- JSON syntax highlighting
+- Edit and export functionality
+- Offline capability
 
 ---
 
@@ -251,36 +330,52 @@ Combine metadata, original transcript, and translation into the JSON schema show
 
 ### Back-Translation Evaluation
 
+As suggested by Prof. Lipika Dey:
+
 ```
-Original (A) → English (B) → Back-translate (A')
-                    ↓
-            Compare A and A'
-            using BLEU, ROUGE, BERTScore
+Original Text (A) 
+      ↓ [Translate]
+English Text (B)
+      ↓ [Back-Translate]
+Back-Translated Text (A')
+      ↓
+Compare A and A' using: 
+- BLEU Score
+- ROUGE Score
+- BERTScore
 ```
 
 ### Hallucination Detection
 
 For ingredient list `L` from video description: 
-- **Hit:** Ingredients in `L` that appear in transcript
-- **Miss:** Ingredients in `L` not found in transcript
-- **Hallucination:** Items in transcript not in `L`
+
+| Metric | Formula | Meaning |
+|--------|---------|---------|
+| **Hit** | Items in L ∩ Transcript | Correctly extracted |
+| **Miss** | Items in L but not in Transcript | Missed ingredients |
+| **Hallucination** | Items in Transcript but not in L | False additions |
 
 ---
 
 ## 📂 Additional Resources
 
-- **Full Dataset (Google Drive):** [Click Here](https://drive.google.com/drive/folders/1kyAQaV5eYWCy8YCyMgc9ebVtzTRi_ifo)
-- **Project Report:** [Attached in submission email]
+| Resource | Link |
+|----------|------|
+| Full Dataset (Google Drive) | [Click Here](https://drive.google.com/drive/folders/1kyAQaV5eYWCy8YCyMgc9ebVtzTRi_ifo) |
+| TurboScribe | [turboscribe.ai](https://turboscribe.ai/) |
+| Google Gemini AI | [gemini.google.com](https://gemini.google.com/) |
+| Project Report | Attached in submission email |
 
 ---
 
 ## 🔮 Future Scope
 
 - [ ] Automated pipeline with reduced manual intervention
-- [ ] Fine-tuned ASR models for Indian languages
-- [ ] Multimodal integration (visual ingredient extraction)
-- [ ] Recipe Knowledge Graph construction
+- [ ] Fine-tuned ASR models for Indian regional languages
+- [ ] Multimodal integration (visual ingredient extraction from video frames)
+- [ ] Recipe Knowledge Graph construction using Neo4j
 - [ ] Mobile application for browsing recipes
+- [ ] Integration with nutrition databases
 
 ---
 
@@ -303,7 +398,7 @@ For ingredient list `L` from video description:
 
 ## 📄 License
 
-This project was developed as part of **NPTEL Winter Internship 2025** under the guidance of Ashoka University.
+This project was developed as part of **NPTEL Winter Internship 2025** under the guidance of Ashoka University. 
 
 ---
 
@@ -311,5 +406,7 @@ This project was developed as part of **NPTEL Winter Internship 2025** under the
 
 1. Vaswani, A., et al. (2017). "Attention is All You Need." *NeurIPS*
 2. Radford, A., et al. (2022). "Whisper:  Robust Speech Recognition." *OpenAI*
-3. Tactiq YouTube Transcript Tool - https://tactiq.io/
+3. TurboScribe - AI Transcription Tool - https://turboscribe.ai/
 4. Google Gemini AI - https://gemini.google.com/
+5. Machine Translation Evaluation Guide - https://www.machinetranslation.com/
+6. Rural Recipes by Banglanatak - https://www.youtube.com/@RuralRecipes_BNC
